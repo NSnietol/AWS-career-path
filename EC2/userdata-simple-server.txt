@@ -5,4 +5,14 @@ yum update -y
 yum install -y httpd
 systemctl start httpd
 systemctl enable httpd
-echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+
+#Install git
+sudo yum update -y
+sudo yum install git -y
+
+
+git clone https://github.com/NSnietol/my-EC2-example-server.git 
+cd my-EC2-example-server  && sh build-site.sh && cd ..
+
+cp -a my-EC2-example-server/. /var/www/html/ 
+echo "HTTP set up : Done"
